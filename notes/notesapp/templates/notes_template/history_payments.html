@@ -1,0 +1,50 @@
+{% extends 'notes_template/header.html' %}
+{% load static %}
+{% block contant %}
+  <div class="container p-5"><br><br><br>
+      <div class="row">
+      {% for obj in obj %}  
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem; border-radius: 15px;">
+            <img class="card-img-top" src="{{obj.image.url}}" alt="Card image cap" style="height:300px;">
+            <div class="card-body">
+              <h5 class="card-title">{{obj.title}}</h5>
+              <p class="card-text">{{obj.text}}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}  
+      <div class="col-md-8">
+      <div class="modal-header" style="background-color:orange ;">
+        <h4 class="modal-title">HISTORY NOTES</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form method="post" action="">
+          <div class="mb-3">
+            <label  class="form-label">PAY</label>
+          {% for obj in obj %}  
+            <input type="text" name="discounted_price" value="{{obj.discounted_price}}" class="form-control" readonly style="background-color: pink;">
+          {% endfor %}  
+          </div>
+          <div class="mb-3">
+            <label class="form-label">NAME</label>
+            <input type="text" name="name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">MOBILE</label>
+            <input type="text" name="mobile" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">EMAIL</label>
+            <input type="text" name="email" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary"><a href="{% url 'payments' %}" style="color:white; text-decoration:none;">PAY Now</a></button>
+        </form>
+      </div>
+      </div>        
+      </div>
+    </div>    
+{% include 'notes_template/footer.html' %}  
+{% endblock %} 
